@@ -1,0 +1,8 @@
+* C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\base\mem_circuit.asc
+V N001 0 SINE(0 3 0.02 0)
+XU1 x dxdt N001 0 MEM_NAMLAB
+.tran 50
+.param x0=0.1
+.lib C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\base\MEM_NAMLAB.cir
+.backanno
+.end

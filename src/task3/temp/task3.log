@@ -1,0 +1,14 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task3\temp\task3.asc
+Start Time: Wed Jan 15 20:54:21 2025
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = modified trap
+WARNING: Node X is floating and connected to current source G:U1:X.  It's .op solution is defined solely by a .ic statement.
+
+WARNING: Less than two connections to node dxdt.  This node is used by e:u1:x.
+Direct Newton iteration for .op point succeeded.
+Total elapsed time: 0.285 seconds.
+

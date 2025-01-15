@@ -1,0 +1,11 @@
+1. How LRS HRS LCS and HCS related.
+Ans: if mem = LRS memcap is HCS and vice-versa
+
+2. Relation b/w Cm, Cp and Cs.
+Ans: Cm = Cs and Cp is in parallel to Cgs. The effective cap is aprox to Cgs.
+
+3. MOSFET parameters : Uo and TPG.
+
+4. How to get potentiaton and depresson curve.
+
+5.
