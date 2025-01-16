@@ -8,4 +8,6 @@ Ans: Cm = Cs and Cp is in parallel to Cgs. The effective cap is aprox to Cgs.
 
 4. How to get potentiaton and depresson curve.
 
-5.
+5. How the LRS, HRS (I-V graph) related to potentiaton and depresson curve.
+
+6. What is the length of the transistor described in the task paper. Should we get some transistor model to do the task.

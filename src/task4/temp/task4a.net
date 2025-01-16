@@ -1,9 +1,0 @@
-* C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task4\temp\task4a.asc
-V N001 0 PWL file=task4_input.txt
-XU1 N001 0 x dxdt MEM_NAMLAB
-.tran 2
-.param x0=100m
-; Simulation Settings
-.lib C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\base\MEM_NAMLAB.cir
-.backanno
-.end

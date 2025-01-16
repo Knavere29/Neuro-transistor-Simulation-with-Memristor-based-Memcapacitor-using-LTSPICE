@@ -16,33 +16,33 @@ netlist = AscEditor("../base/mem_circuit.asc")                                  
 with open ("./temp/task4_input.txt", "w") as f:
     vtime = 0
     for i in range(100):
-        f.writelines(f"{vtime}u 0\n")
-        vtime += 9990
-        f.writelines(f"{vtime}u 0\n")
+        f.writelines(f"{vtime}n 0\n")
+        vtime += 99997
+        f.writelines(f"{vtime}n 0\n")
         vtime += 1
-        f.writelines(f"{vtime}u -3\n")
-        vtime += 8
-        f.writelines(f"{vtime}u -3\n")
+        f.writelines(f"{vtime}n -3\n")
+        vtime += 1
+        f.writelines(f"{vtime}n -3\n")
         vtime += 1
     for i in range(100):
-        f.writelines(f"{vtime}u 0\n")
-        vtime += 9990
-        f.writelines(f"{vtime}u 0\n")
+        f.writelines(f"{vtime}n 0\n")
+        vtime += 99997
+        f.writelines(f"{vtime}n 0\n")
         vtime += 1
-        f.writelines(f"{vtime}u 2.7\n")
-        vtime += 8
-        f.writelines(f"{vtime}u 2.7\n")
+        f.writelines(f"{vtime}n 2.7\n")
         vtime += 1
-    f.writelines(f"{vtime}m 0\n")
+        f.writelines(f"{vtime}n 2.7\n")
+        vtime += 1
+    f.writelines(f"{vtime}n 0\n")
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
-netlist.set_component_value('V', "PWL file=task4_input.txt")
+netlist.set_component_value('V1', "PWL file=task4_input.txt")
 
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(
     "; Simulation Settings",
-    ".tran 2",
+    ".tran 20m",
 )
 LTC.run(netlist,run_filename=task_name+".asc")
 
@@ -70,7 +70,7 @@ for raw, log in LTC:
 
     print("Cond",len(ydata0),"time",len(xdata0))
     # find conductance at discrete time points
-    vtime = 9999
+    vtime = 98
     cond = []
     for cnd in range (200):
         index = np.argmin(np.abs(xdata0 - vtime))
@@ -79,7 +79,7 @@ for raw, log in LTC:
         # print(ydata1[list(xdata0).index(vtime)])
         # print(list(xdata0).index(vtime))
         cond.append(ydata0[index])
-        vtime += 10000
+        vtime += 100
 
     axs.plot(pulse, cond,'^')                # Do an X/Y plot on second subplot
     axs.set_ylabel("Conductance (S)")
