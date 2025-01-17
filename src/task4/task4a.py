@@ -37,7 +37,7 @@ with open ("./temp/task4_input.txt", "w") as f:
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
-netlist.set_component_value('V1', "PWL file=task4_input.txt")
+netlist.set_component_value('Vin', "PWL file=task4_input.txt")
 
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(

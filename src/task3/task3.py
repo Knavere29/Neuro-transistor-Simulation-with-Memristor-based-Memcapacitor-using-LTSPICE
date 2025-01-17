@@ -10,18 +10,15 @@ task_name = "task3"
 
 # Select spice model
 LTC = SimRunner(output_folder='./temp', simulator=LTspice)                         # Location for saving the simualtion files
-LTC.create_netlist('../base/sine_input.asc')          # Creating Netlist
-netlist = SpiceEditor('../base/sine_input.net')
-#netlist = AscEditor("../base/sine_input.asc")                                      # Creating Netlist from .asc file
+netlist = AscEditor("../base/mem_circuit.asc")                                     # Creating Netlist from .asc file
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
-netlist.set_component_value('V', "PWL file=../task3_input.txt")
+netlist.set_component_value('Vin', "PWL file=../task3_input.txt")
 
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(
     "; Simulation Settings",
-    ".lib ../../base/MEM_NAMLAB_CORE.sub"
     ".tran 200",
 )
 LTC.run(netlist,run_filename=task_name+".asc")
@@ -58,7 +55,7 @@ for raw, log in LTC:
     axs[1].set_yscale("log")
 
     # plot 3 : state x vs time
-    state = raw_file.get_trace('V(state)')           # Get the trace data of state x
+    state = raw_file.get_trace('V(x)')           # Get the trace data of state x
     time3 = raw_file.get_trace('time')           # Get the trace data of time
     xdata2 = time3.get_wave()                    # Get all the values for the 'time' trace
     ydata2 = state.get_wave()                    # Get all the values for the 'state' trace
