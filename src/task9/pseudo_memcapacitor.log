@@ -1,0 +1,6 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\dhanu\OneDrive\Documents\My files\GITHUB\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task9\pseudo_memcapacitor.asc
+Start Time: Sun Jan 19 15:45:37 2025
+Questionable use of curly braces in ".ic v(sv) = {x0}"
+    Error: undefined symbol in: "[x0]"
+Fatal Error: Trouble parsing initial condition value for V(sv)

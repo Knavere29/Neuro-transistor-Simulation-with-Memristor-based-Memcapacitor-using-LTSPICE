@@ -2,10 +2,10 @@ Version 4
 SymbolType BLOCK
 RECTANGLE Normal -48 -56 48 56
 WINDOW 0 0 -56 Bottom 2
+WINDOW 3 0 56 Top 2
 SYMATTR Prefix X
 SYMATTR Value MemNeuroTransistor
-SYMATTR ModelFile C:\Users\bibin\OneDrive\Desktop\SUBJECTS\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\Neurotransistor-main\MemNeuroTransistor.cir
-WINDOW 3 0 56 Top 2
+SYMATTR ModelFile C:\Users\dhanu\OneDrive\Documents\My files\GITHUB\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\Neurotransistor-main\MemNeuroTransistor.cir
 PIN -48 -16 LEFT 8
 PINATTR PinName IN
 PINATTR SpiceOrder 1
