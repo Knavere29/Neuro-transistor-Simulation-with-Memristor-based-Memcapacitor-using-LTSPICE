@@ -34,8 +34,8 @@ Gx 0 SV value = {F(V(ME,BE),V(SV,0))}
 Gmem TE BE value={V(ME,BE)*G(V(SV,0),V(ME,BE))}
 
 * Rs and Rp
-Rx TE ME 10
-Ry ME BE 200meg
+Rx TE ME 278
+Ry ME BE 8meg
 
 * Votage source for state response
 Ex DSV 0 value = {F(V(ME,BE),V(SV,0))}
