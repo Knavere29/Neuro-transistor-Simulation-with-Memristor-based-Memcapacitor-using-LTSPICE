@@ -1,0 +1,39 @@
+** Memristor-based memcapacitive neurotransistor
+.SUBCKT MemNeuroTransistor IN D G S SV
+** Parameter
+.params Icc=1m xmax=1 xmin=0 x0=0
++ion=1u ioff=100n aon=4 aoff=2
++etas=250 etar=100 Vs=0.5 Vr=-0.5
++Cp=5p Cgs=45p Rp=200Meg Rs=10
+** Circuit
+* Noise source for snap forward/snap back current
+Gn 0 N value={white(1e8*time)}
+Rn N 0 {1}
+* Series resistance
+Ri G M {Rs}
+* Current source for memristance IV response
+Gm M IN value={limit(Im(V(SV,0),V(M,IN)),-Icc,Icc)}
+* Parallel capacitance and resistance
+Cm G IN {Cp}
+Rm G IN {Rp}
+* State dynamics dx/dt = F(V,x)
+Cx SV 0 {1} ic={x0}
+Gx 0 SV value={F(V(SV,0),V(G,IN),I(Gn))}
+* NMOS and gate-source capacitance
+Mn D G S NT
+Cg G S {Cgs}
+** Functions
+*linear state dependency
+.func K(x,on,off)=off+(on-off)*limit(x,xmin,xmax)
+*diode-like current function
+.func Im(x,vm)= K(x,ion,ioff)*sinh(K(x,aon,aoff)*vm)
+*set time constant with noise n
+.func TS(v,n)=exp(-etas*(v-Vs*(1+n)))
+*reset time constant with noise n
+.func TR(v,n)=exp( etar*(v-Vr*(1+n)))
+*State equation for state in range of [0,1]
+.func F(x,v,n)= if(v>=0,(xmax-x)/TS(v,n),(xmin-x)/TR(v,n))
+** NMOS transistor
+.model NT NMOS(LEVEL=3 L=1u W=4u Vto=0.45 Tox=12n
++Uo=798 PHI=66)
+.ENDS MemNeuroTransistor
