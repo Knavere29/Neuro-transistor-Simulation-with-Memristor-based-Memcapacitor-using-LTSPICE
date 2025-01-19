@@ -16,24 +16,31 @@ netlist = AscEditor("../base/mem_circuit.asc")                                  
 with open ("./temp/task4_input.txt", "w") as f:
     vtime = 0
     for i in range(100):
-        f.writelines(f"{vtime}n 0\n")
-        vtime += 99997
-        f.writelines(f"{vtime}n 0\n")
+        f.writelines(f"{vtime}m -3\n")
+        vtime += 10
+        f.writelines(f"{vtime}m -3\n")
         vtime += 1
-        f.writelines(f"{vtime}n -3\n")
+        f.writelines(f"{vtime}m 0\n")
+        vtime += 9
+        f.writelines(f"{vtime}m 0\n")
         vtime += 1
-        f.writelines(f"{vtime}n -3\n")
+        f.writelines(f"{vtime}m 1\n")
         vtime += 1
-    for i in range(100):
-        f.writelines(f"{vtime}n 0\n")
-        vtime += 99997
-        f.writelines(f"{vtime}n 0\n")
+        f.writelines(f"{vtime}m 1\n")
         vtime += 1
-        f.writelines(f"{vtime}n 2.7\n")
+        f.writelines(f"{vtime}m 0\n")
         vtime += 1
-        f.writelines(f"{vtime}n 2.7\n")
-        vtime += 1
-    f.writelines(f"{vtime}n 0\n")
+        f.writelines(f"{vtime}m 1\n")
+    # for i in range(100):
+    #     f.writelines(f"{vtime}m 0\n")
+    #     vtime += 9
+    #     f.writelines(f"{vtime}m 0\n")
+    #     vtime += 1
+    #     f.writelines(f"{vtime}m 2.7\n")
+    #     vtime += 9
+    #     f.writelines(f"{vtime}m 2.7\n")
+    #     vtime += 1
+    # f.writelines(f"{vtime}n 0\n")
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)

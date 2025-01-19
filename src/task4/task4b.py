@@ -6,17 +6,11 @@ from PyLTSpice import Trace, RawWrite, RawRead
 from PyLTSpice import SimRunner, SpiceCircuit, SpiceEditor, AscEditor
 from PyLTSpice import LTspice
 
-# Delete temp folder
-if os.path.isdir("./temp"):
-    shutil.rmtree("./temp")
+task_name = "task4b"
 
 # Select spice model
 LTC = SimRunner(output_folder='./temp', simulator=LTspice)                         # Location for saving the simualtion files
 netlist = AscEditor("../base/mem_circuit.asc")                                     # Creating Netlist from .asc file
-
-# Copy required files into temp folder
-shutil.copy("../base/MEM_NAMLAB.cir", "./temp")
-shutil.copy("../base/Mem.asy", "./temp")
 
 # Generate PWL file for -3V, 10ms 100 pulse and -2.7, 10ms 100 pulse
 with open ("./temp/task4_input.txt", "w") as f:
@@ -43,7 +37,7 @@ with open ("./temp/task4_input.txt", "w") as f:
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
-netlist.set_element_model('V', "{Vx}")
+netlist.set_element_model('Vin', "{Vx}")
 
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(
@@ -51,7 +45,7 @@ netlist.add_instructions(
     ".STEP param Vx -2.5 3.5 0.5",
     ".tran 1",
 )
-LTC.run(netlist,run_filename="task4b"+".asc")
+LTC.run(netlist,run_filename=task_name+".asc")
 
 # plot waveforms
 for raw, log in LTC:
@@ -91,4 +85,14 @@ for raw, log in LTC:
     # axs.plot(pulse, cond,'^')                # Do an X/Y plot on second subplot
     # axs.set_ylabel("Conductance (S)")
     #
-    # plt.show()
+    # fig.savefig('./{}.png'.format(task_name))  # save the plot as png
+    # plt.close(fig)  # close plot
+
+# Sim Statistics
+print('Successful/Total Simulation: ' + str(LTC.okSim) + '/' + str(LTC.runno))
+
+# Deleting generated files during simulation
+enter = input("Press 1 to delete created files")
+if enter == '1':
+    netlist.reset_netlist()
+    LTC.file_cleanup()
