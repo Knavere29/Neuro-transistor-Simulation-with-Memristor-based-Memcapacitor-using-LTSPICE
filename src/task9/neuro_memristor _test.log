@@ -1,17 +1,12 @@
 LTspice 24.0.12 for Windows
-Circuit: * C:\Users\dhanu\OneDrive\Documents\My files\GITHUB\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task9\neuro_memristor _test.asc
-Start Time: Sun Jan 19 17:38:20 2025
+Circuit: * C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task9\neuro_memristor _test.asc
+Start Time: Mon Jan 20 12:41:40 2025
+Unknown model type "level" -- ignored
 solver = Normal
 Maximum thread count: 16
 tnom = 27
 temp = 27
 method = modified trap
-Limiting rise time of source v to 1e-09
-Limiting fall time of source v to 1e-09
-WARNING: Node VG is floating.
-WARNING: Node X is floating and connected to current source G:X1:U1:X.  It's .op solution is defined solely by a .ic statement.
-
-WARNING: Less than two connections to node dxdt.  This node is used by e:x1:u1:x.
 Direct Newton iteration for .op point succeeded.
-Total elapsed time: 0.131 seconds.
+Total elapsed time: 0.347 seconds.
 
