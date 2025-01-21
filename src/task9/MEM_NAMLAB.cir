@@ -31,11 +31,14 @@ Cx SV 0 {1}
 Gx 0 SV value = {F(V(ME,BE),V(SV,0))}
 
 * Current source for memristor IV response
-Gmem TE BE value={V(ME,BE)*G(V(SV,0),V(ME,BE))}
+Gmem ME BE value={V(ME,BE)*G(V(SV,0),V(ME,BE))}
 
 * Rs and Rp
 Rx TE ME 278
 Ry ME BE 8meg
+
+* Cp
+Cp TE BE 10p
 
 * Votage source for state response
 *Ex DSV 0 value = {F(V(ME,BE),V(SV,0))}

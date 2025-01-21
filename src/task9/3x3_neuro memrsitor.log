@@ -1,0 +1,15 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\dhanu\OneDrive\Documents\My files\GITHUB\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task9\3x3_neuro memrsitor.asc
+Start Time: Mon Jan 20 15:16:37 2025
+Unknown model type "level" -- ignored
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = modified trap
+WARNING: Specified period is not longer than the sum of Trise, Tfall, and Ton for v.  Increasing period to 1.4e-06
+WARNING: Specified period is not longer than the sum of Trise, Tfall, and Ton for v1.  Increasing period to 1.4e-06
+WARNING: Specified period is not longer than the sum of Trise, Tfall, and Ton for v2.  Increasing period to 1.4e-06
+Direct Newton iteration for .op point succeeded.
+Total elapsed time: 20.652 seconds.
+
