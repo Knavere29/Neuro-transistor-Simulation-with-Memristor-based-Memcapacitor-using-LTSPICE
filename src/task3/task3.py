@@ -63,8 +63,10 @@ for raw, log in LTC:
     axs[2].set_ylabel("State x")
     axs[2].set_xlabel("Time (s)")
 
-    fig.savefig('./{}.png'.format(task_name))    # save the plot as png
-    plt.close(fig)                               # close plot
+    plt.show()
+
+    #fig.savefig('./{}.png'.format(task_name))    # save the plot as png
+    #plt.close(fig)                               # close plot
 
 # Sim Statistics
 print('Successful/Total Simulation: ' + str(LTC.okSim) + '/' + str(LTC.runno))

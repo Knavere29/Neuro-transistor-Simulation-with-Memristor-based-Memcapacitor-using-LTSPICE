@@ -1,14 +1,10 @@
 * Namlab analog core memristor
 * Author: Richard Schroedter, April 2022
 * Connections:
-*   TE : Top electrode
-*   BE : Bottom electrode
-*   SV : State variable for plot
-*   DSV: State variable derivative for plot
-* Changes:
-*   - Added Rs and Rp as part of memristor core
-*   - Added DSV port
-.SUBCKT MEM_NAMLAB TE BE SV DSV
+*   TE: Top electrode
+*   BE: Bottom electrode
+*   SV: State variable for plot
+.SUBCKT memristor_drm TE BE SV DSV
 
 .params Ar=4.7447e-8 As=1.1253e-8 Br=2.6831 Bs=9.3348
 + c1=2.9457e-4 c2=57414 c3=11103 wc=1000 xon=0.1 xoff=0.284
@@ -40,4 +36,4 @@ Ry ME BE 8meg
 * Votage source for state response
 Ex DSV 0 value = {F(V(ME,BE),V(SV,0))}
 
-.ENDS MEM_NAMLAB
+.ENDS memristor_drm

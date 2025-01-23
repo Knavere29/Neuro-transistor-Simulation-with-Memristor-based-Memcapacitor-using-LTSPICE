@@ -10,46 +10,15 @@ task_name  = "task4a"
 
 # Select spice model
 LTC = SimRunner(output_folder='./temp', simulator=LTspice)                         # Location for saving the simualtion files
-netlist = AscEditor("../base/mem_circuit.asc")                                     # Creating Netlist from .asc file
-
-# Generate PWL file for -3V, 10ms 100 pulse and -2.7, 10ms 100 pulse
-with open ("./temp/task4_input.txt", "w") as f:
-    vtime = 0
-    for i in range(100):
-        f.writelines(f"{vtime}m -3\n")
-        vtime += 10
-        f.writelines(f"{vtime}m -3\n")
-        vtime += 1
-        f.writelines(f"{vtime}m 0\n")
-        vtime += 9
-        f.writelines(f"{vtime}m 0\n")
-        vtime += 1
-        f.writelines(f"{vtime}m 1\n")
-        vtime += 1
-        f.writelines(f"{vtime}m 1\n")
-        vtime += 1
-        f.writelines(f"{vtime}m 0\n")
-        vtime += 1
-        f.writelines(f"{vtime}m 1\n")
-    # for i in range(100):
-    #     f.writelines(f"{vtime}m 0\n")
-    #     vtime += 9
-    #     f.writelines(f"{vtime}m 0\n")
-    #     vtime += 1
-    #     f.writelines(f"{vtime}m 2.7\n")
-    #     vtime += 9
-    #     f.writelines(f"{vtime}m 2.7\n")
-    #     vtime += 1
-    # f.writelines(f"{vtime}n 0\n")
+netlist = AscEditor("./mem_drm.asc")                                               # Creating Netlist from .asc file
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
-netlist.set_component_value('Vin', "PWL file=task4_input.txt")
 
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(
     "; Simulation Settings",
-    ".tran 20m",
+    ".tran 5",
 )
 LTC.run(netlist,run_filename=task_name+".asc")
 
