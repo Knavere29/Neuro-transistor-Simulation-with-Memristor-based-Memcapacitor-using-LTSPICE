@@ -60,19 +60,18 @@ for raw, log in LTC:
     xdata2 = time3.get_wave()                    # Get all the values for the 'time' trace
     ydata2 = state.get_wave()                    # Get all the values for the 'state' trace
     axs[2].plot(xdata2, ydata2)                  # Do an X/Y plot on first subplot
-    axs[2].set_ylabel("State x")
+    axs[2].set_ylabel("State x (V)")
     axs[2].set_xlabel("Time (s)")
 
-    plt.show()
-
-    #fig.savefig('./{}.png'.format(task_name))    # save the plot as png
-    #plt.close(fig)                               # close plot
+    plt.show()                                   # show the plot
+    fig.savefig('./{}.png'.format(task_name))    # save the plot as png
+    plt.close(fig)                               # close plot
 
 # Sim Statistics
 print('Successful/Total Simulation: ' + str(LTC.okSim) + '/' + str(LTC.runno))
 
 # Deleting generated files during simulation
-enter = input("Press enter to delete created files")
+enter = input("Press 1 to delete created files")
 if enter == '1':
     netlist.reset_netlist()
     LTC.file_cleanup()

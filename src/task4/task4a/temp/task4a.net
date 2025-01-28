@@ -1,0 +1,12 @@
+* C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task4\task4a\temp\task4a.asc
+V1 Vin N001 PULSE(0 -3 10m 10u 10u 10m 22m 100)
+Vread N001 N002 PULSE(0 1 30m 10u 10u 1m 22m 200)
+V3 N002 0 PULSE(0 2.7 2210m 10u 10u 10m 22m 100)
+XU1 Vin 0 x dxdt MEM_NAMLAB
+.tran 5
+.param x0=100m
+; Simulation Settings
+; Simulation Settings
+.lib .\MEM_NAMLAB.cir
+.backanno
+.end
