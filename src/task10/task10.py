@@ -1,5 +1,5 @@
 # Importing necessary libraries
-import os
+import os, shutil
 import matplotlib.pyplot as plt
 import numpy as np
 from PyLTSpice import Trace, RawWrite, RawRead
@@ -36,6 +36,26 @@ for x in [0.1, 0.284]:                            # Switching Pseudo-Memcapacito
                 print("Simulating: " + run_netlist_file)
                 LTC.run(netlist, run_filename=run_netlist_file+".asc")
 
+# Delete previous run results
+try:
+    if os.path.isdir("empty-dir"):
+        os.rmdir("result")
+    else:
+        shutil.rmtree("result")
+except Exception as e:
+    print("result folder doesn't exist Error :",e)
+
+# Create the directory
+directory_name = "result"
+try:
+    os.mkdir(directory_name)
+    print(f"Directory '{directory_name}' created successfully.")
+except FileExistsError:
+    print(f"Directory '{directory_name}' already exists.")
+except PermissionError:
+    print(f"Permission denied: Unable to create '{directory_name}'.")
+except Exception as e:
+    print(f"An error occurred: {e}")
 
 # plot waveforms
 for raw, log in LTC:

@@ -71,4 +71,8 @@ enter = input("Press 1 to delete created files")
 if enter == '1':
     netlist.reset_netlist()
     LTC.file_cleanup()
+    print("Deleted all the created files")
+else:
+    print("Saved all the created files")
+print("SIM END")
 
