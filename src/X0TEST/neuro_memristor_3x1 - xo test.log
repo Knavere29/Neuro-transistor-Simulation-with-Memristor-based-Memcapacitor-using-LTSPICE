@@ -1,0 +1,4 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\dhanu\OneDrive\Documents\My files\GITHUB\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\X0 TEST\neuro_memristor_3x1 - xo test.asc
+Start Time: Wed Jan 29 13:29:38 2025
+Fatal Error: Simulation canceled during subcircuit expansion.
