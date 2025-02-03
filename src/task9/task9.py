@@ -24,8 +24,8 @@ netlist.add_instructions(
 
 run_count = 0
 # Sweeping Parameters
-for voltage in [0.5, 1, 1.5]:                           # Switching Pseudo-Memcapacitor ON/OFF
-    for t_on in [1, 2, 3]:                            # Switching the voltage source between 0.8V, 1.2V and 1.5V
+for voltage in [0.5, 1, 1.5]:                                # Switching Pseudo-Memcapacitor ON/OFF
+    for t_on in [1, 2, 3]:                                   # Switching the voltage source between 0.8V, 1.2V and 1.5V
         for t_period in [10, 50, 100]:                       # Switching the t_on period
             for x in [0.1, 0.192, 0.284]:                    # Switching the time period
                 netlist.set_parameters(x0=x)

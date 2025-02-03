@@ -6,11 +6,11 @@ from PyLTSpice import Trace, RawWrite, RawRead
 from PyLTSpice import SimRunner, SpiceCircuit, SpiceEditor, AscEditor
 from PyLTSpice import LTspice
 
-task_name = "task10"
+task_name = "task10a"
 
 # Select spice model
 LTC = SimRunner(output_folder='./temp', simulator=LTspice)                         # Location for saving the simualtion files
-netlist = AscEditor("../base/neuro_memristor_3x3.asc")                                     # Creating Netlist from .asc file
+netlist = AscEditor("../base/neuro_memristor_3x1.asc")                                     # Creating Netlist from .asc file
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
@@ -23,21 +23,15 @@ netlist.add_instructions(
 
 # Sweeping Parameters
 run_count = 0
-for voltage in [1.5]:                                # Switching Pseudo-Memcapacitor ON/OFF
-    for t_on in [3]:                                   # Switching the voltage source between 0.8V, 1.2V and 1.5V
-        for t_period in [10]:                       # Switching the t_on period
-            for x1 in [0.1, 0.192, 0.284]:                    # Switching the time period
-                for x2 in [0.1, 0.192, 0.284]:                    # Switching the time period
+for voltage in [1.5]:                                                 # Switching Pseudo-Memcapacitor ON/OFF
+    for t_on in [3]:                                                  # Switching the voltage source between 0.8V, 1.2V and 1.5V
+        for t_period in [10]:                                         # Switching the t_on period
+            for x1 in [0.1, 0.192, 0.284]:                            # Switching the time period
+                for x2 in [0.1, 0.192, 0.284]:                        # Switching the time period
                     for x3 in [0.1, 0.192, 0.284]:                    # Switching the time period
-                        netlist.set_parameters(x11=x1)
-                        netlist.set_parameters(x12=x2)
-                        netlist.set_parameters(x13=x3)
-                        netlist.set_parameters(x21=x1)
-                        netlist.set_parameters(x22=x2)
-                        netlist.set_parameters(x23=x3)
-                        netlist.set_parameters(x31=x1)
-                        netlist.set_parameters(x32=x2)
-                        netlist.set_parameters(x33=x3)
+                        netlist.set_parameters(x1=x1)
+                        netlist.set_parameters(x2=x2)
+                        netlist.set_parameters(x3=x3)
                         run_count += 1
                         config_volt = "PULSE(" + "0 " + str(voltage) + "V 0 100n 100n " + str(t_on) + "u " + str(t_period) + "u)"
                         netlist.set_component_value('Vpulse1', config_volt)
@@ -74,11 +68,11 @@ for raw, log in LTC:
 
     # Plot
     px = 1 / plt.rcParams['figure.dpi']  # pixel in inches
-    fig, axs = plt.subplots(nrows=7, ncols=1, layout='constrained', figsize=(1080*px, 720*px))    # Create the canvas for plotting
+    fig, axs = plt.subplots(nrows=5, ncols=1, layout='constrained', figsize=(1080*px, 720*px))    # Create the canvas for plotting
 
     raw_file = RawRead(raw)
     #print(raw_file.get_trace_names())                                 # Get and print a list of all the traces
-    trace_names = ('V(Vpulse1)', 'V(Vpulse2)', 'V(Vpulse3)', 'V(Vg1)', 'V(Vg2)', 'V(Vg3)', 'I(R3)')                     # Parameters to be plotted
+    trace_names = ('V(Vpulse1)', 'V(Vpulse2)', 'V(Vpulse3)', 'V(Vg)', 'Id(M1)')                     # Parameters to be plotted
 
     time = raw_file.get_trace('time')
     y = list()
@@ -96,32 +90,24 @@ for raw, log in LTC:
         ydata3 = y[2].get_wave(step)
         ydata4 = y[3].get_wave(step)
         ydata5 = y[4].get_wave(step)
-        ydata6 = y[5].get_wave(step)
-        ydata7 = y[6].get_wave(step)
 
     fig.suptitle(str(raw)[5:-8])
     axs[0].set_ylabel("Vpulse1 (V)")
     axs[1].set_ylabel("Vpulse2 (V)")
     axs[2].set_ylabel("Vpulse3 (V)")
-    axs[3].set_ylabel("Vg1 (V)")
-    axs[4].set_ylabel("Vg2 (V)")
-    axs[5].set_ylabel("Vg3 (V)")
-    axs[6].set_ylabel("I (uA)")
-    axs[6].set_xlabel("Time (s)")
+    axs[3].set_ylabel("Vg (V)")
+    axs[4].set_ylabel("Id (uA)")
+    axs[4].set_xlabel("Time (s)")
     axs[0].plot(xdata, ydata1)
     axs[1].plot(xdata, ydata2)
     axs[2].plot(xdata, ydata3)
     axs[3].plot(xdata, ydata4)
-    axs[4].plot(xdata, ydata5)
-    axs[5].plot(xdata, ydata6)
-    axs[6].plot(xdata, ydata7*10e+6)
+    axs[4].plot(xdata, ydata5*10e+6)
     axs[0].ticklabel_format(style='plain')
     axs[1].ticklabel_format(style='plain')
     axs[2].ticklabel_format(style='plain')
     axs[3].ticklabel_format(style='plain')
     axs[4].ticklabel_format(style='plain')
-    axs[5].ticklabel_format(style='plain')
-    axs[6].ticklabel_format(style='plain')
 
     pwd = os.getcwd() # present working directory
     file_name = os.path.join(pwd,"result",str(raw)[5:-8]+".png")
