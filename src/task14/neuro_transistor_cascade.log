@@ -1,0 +1,69 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task14\neuro_transistor_cascade.asc
+Start Time: Mon Feb  3 21:28:37 2025
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = modified trap
+WARNING: Node STATE11 is floating and connected to current source G:U1:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE12 is floating and connected to current source G:U2:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE13 is floating and connected to current source G:U3:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE21 is floating and connected to current source G:U4:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE22 is floating and connected to current source G:U5:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE23 is floating and connected to current source G:U6:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE31 is floating and connected to current source G:U7:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE32 is floating and connected to current source G:U8:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE33 is floating and connected to current source G:U9:X.  It's .op solution is defined solely by a .ic statement.
+
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+Gmin = 1.07374
+Gmin = 0.115292
+Gmin = 0.0123794
+Gmin = 0.00132923
+Gmin = 0.000142725
+Gmin = 1.5325e-05
+Gmin = 1.6455e-06
+Gmin = 1.76685e-07
+vernier = 0.5
+Singular matrix:  Check node vg2
+   Iteration No. 5
+Gmin = 0
+Singular matrix:  Check nodes state31 and vg2
+   Iteration No. 1
+Gmin stepping failed
+
+Starting source stepping with srcstepmethod=0
+Source Step = 3.0303%
+Singular matrix:  Check nodes n010 and x1:u2:n007
+   Iteration No. 4
+Singular matrix:  Check nodes n010 and x1:u2:n007
+   Iteration No. 1
+Singular matrix:  Check nodes n010 and x1:u2:n007
+   Iteration No. 1
+Singular matrix:  Check nodes n010 and x1:u2:n007
+   Iteration No. 1
+Singular matrix:  Check nodes n010 and x1:u2:n007
+   Iteration No. 1
+Singular matrix:  Check nodes n010 and x1:u2:n007
+   Iteration No. 1
+Singular matrix:  Check nodes n010 and x1:u2:n007
+   Iteration No. 1
+Singular matrix:  Check nodes n010 and x1:u2:n007
+   Iteration No. 1
+Starting source stepping with srcstepmethod=1
+Singular matrix:  Check node n006
+   Iteration No. 2
+Source Step = 3.0303%
+Singular matrix:  Check node x1:u2:n005
+   Iteration No. 4
+Source stepping failed
+
+Singular matrix:  Check node state22
+   Iteration No. 3
+Fatal Error: Singular matrix:  check node state22
+   Iteration No. 3
+
+This circuit has floating nodes.

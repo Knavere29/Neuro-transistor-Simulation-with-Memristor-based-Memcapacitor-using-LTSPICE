@@ -1,0 +1,57 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task14\cascade_neuro_transistor.asc
+Start Time: Tue Feb  4 18:42:02 2025
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = modified trap
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+Gmin = 1.07374
+Gmin = 0.115292
+Gmin = 0.0123794
+Gmin = 0.00132923
+Gmin = 0.000142725
+Gmin = 1.5325e-05
+Gmin = 1.6455e-06
+Gmin = 1.76685e-07
+Singular matrix:  Check nodes x2:n002 and x3:u2:n009
+   Iteration No. 71
+Gmin = 0
+Singular matrix:  Check nodes x2:state11 and x3:u2:n007
+   Iteration No. 1
+Gmin stepping failed
+
+Starting source stepping with srcstepmethod=0
+Source Step = 3.0303%
+Singular matrix:  Check nodes n001 and x2:n003
+   Iteration No. 4
+Singular matrix:  Check nodes n001 and x2:n003
+   Iteration No. 1
+Singular matrix:  Check nodes n001 and x2:n003
+   Iteration No. 1
+Singular matrix:  Check nodes n001 and x2:n003
+   Iteration No. 1
+Singular matrix:  Check nodes n001 and x2:n003
+   Iteration No. 1
+Singular matrix:  Check nodes n001 and x2:n003
+   Iteration No. 1
+Singular matrix:  Check nodes n001 and x2:n003
+   Iteration No. 1
+Singular matrix:  Check nodes n001 and x2:n003
+   Iteration No. 1
+Starting source stepping with srcstepmethod=1
+Singular matrix:  Check nodes x2:n005 and x2:n001
+   Iteration No. 2
+Source Step = 3.0303%
+Singular matrix:  Check node n001
+   Iteration No. 4
+Source stepping failed
+
+Singular matrix:  Check node x2:state23
+   Iteration No. 3
+Fatal Error: Singular matrix:  check node x2:state23
+   Iteration No. 3
+

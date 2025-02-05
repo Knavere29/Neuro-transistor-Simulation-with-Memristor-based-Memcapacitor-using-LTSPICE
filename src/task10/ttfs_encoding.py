@@ -30,8 +30,9 @@ def generate_pwl_files(spike_times, output_prefix="spikes"):
                 time = spike_times[row, col]
 
                 f.write(f"{time + d :1.6e} 0.0\n")  # Voltage spike
-                f.write(f"{time + 1.5e-6 + d :.6e} 1.5\n")  # Drop voltage
-                f.write(f"{time + 3e-6 + d:.6e} 0.0\n\n") # Restore voltage
+                f.write(f"{time + 0.1e-6 + d :.6e} 1\n")  # Drop voltage
+                f.write(f"{time + 1.9e-6 + d :.6e} 1\n")  # Drop voltage
+                f.write(f"{time + 2e-6 + d:.6e} 0.0\n\n") # Restore voltage
                 d+=30e-6
 
         print(f"PWL file saved: {filename}")
