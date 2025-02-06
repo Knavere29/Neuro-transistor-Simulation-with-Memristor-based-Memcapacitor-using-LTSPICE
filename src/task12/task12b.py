@@ -19,7 +19,8 @@ netlist.set_parameters(x0=0.1)
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(
     "; Simulation Settings",
-    ".tran 1m",
+    ".tran 0.5"
+    "m",
 )
 
 # Sweeping Parameters
@@ -103,18 +104,18 @@ for raw in run_file_list:
         ydata6 = y[5].get_wave(step)
         ydata7 = y[6].get_wave(step)
 
-    fig.suptitle(str(raw))
-    axs[0].set_ylabel("Vpulse1 (V)")
-    axs[1].set_ylabel("Vg1 (V)")
-    axs[2].set_ylabel("Vg2 (V)")
-    axs[3].set_ylabel("Vg3 (V)")
-    axs[4].set_ylabel("IR1 (uA)")
-    axs[4].set_xlabel("Time (s)")
-    axs[0].plot(xdata, ydata1)
-    axs[1].plot(xdata, ydata4, 'r')
-    axs[2].plot(xdata, ydata5, 'g')
-    axs[3].plot(xdata, ydata6, 'm')
-    axs[4].plot(xdata, ydata7*1e+6, 'k')
+    fig.suptitle(str(raw), weight='bold')
+    axs[0].set_ylabel("Vpulse1 (V)", weight='bold')
+    axs[1].set_ylabel("Vg1 (V)", weight='bold')
+    axs[2].set_ylabel("Vg2 (V)", weight='bold')
+    axs[3].set_ylabel("Vg3 (V)", weight='bold')
+    axs[4].set_ylabel("IRd (uA)", weight='bold')
+    axs[4].set_xlabel("Time (ms)", weight='bold')
+    axs[0].plot(xdata*1e+3, ydata1)
+    axs[1].plot(xdata*1e+3, ydata4, 'r')
+    axs[2].plot(xdata*1e+3, ydata5, 'g')
+    axs[3].plot(xdata*1e+3, ydata6, 'm')
+    axs[4].plot(xdata*1e+3, ydata7*1e+6, 'k')
     axs[0].ticklabel_format(style='plain')
     axs[1].ticklabel_format(style='plain')
     axs[2].ticklabel_format(style='plain')

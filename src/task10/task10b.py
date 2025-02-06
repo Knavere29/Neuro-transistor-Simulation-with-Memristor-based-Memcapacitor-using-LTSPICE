@@ -87,7 +87,7 @@ for raw in run_file_list:
 
     raw_file = RawRead(file_name)
     #print(raw_file.get_trace_names())                                                            # Get and print a list of all the traces
-    trace_names = ('V(Vpulse1)', 'V(Vpulse2)', 'V(Vpulse3)', 'V(Vg)', 'I(R1)')                    # Parameters to be plotted
+    trace_names = ('V(Vpulse1)', 'V(Vpulse2)', 'V(Vpulse3)', 'V(Vg)', 'I(Rd)')                    # Parameters to be plotted
 
     time = raw_file.get_trace('time')
     y = list()
@@ -106,18 +106,18 @@ for raw in run_file_list:
         ydata4 = y[3].get_wave(step)
         ydata5 = y[4].get_wave(step)
 
-    fig.suptitle(str(raw))
-    axs[0].set_ylabel("Vpulse1 (V)")
-    axs[1].set_ylabel("Vpulse2 (V)")
-    axs[2].set_ylabel("Vpulse3 (V)")
-    axs[3].set_ylabel("Vg (V)")
-    axs[4].set_ylabel("Id (uA)")
-    axs[4].set_xlabel("Time (s)")
-    axs[0].plot(xdata, ydata1)
-    axs[1].plot(xdata, ydata2, 'm')
-    axs[2].plot(xdata, ydata3, 'g')
-    axs[3].plot(xdata, ydata4, 'r')
-    axs[4].plot(xdata, ydata5*1e+6, 'k')
+    fig.suptitle(str(raw), weight='bold')
+    axs[0].set_ylabel("Vpulse1 (V)", weight='bold')
+    axs[1].set_ylabel("Vpulse2 (V)", weight='bold')
+    axs[2].set_ylabel("Vpulse3 (V)", weight='bold')
+    axs[3].set_ylabel("Vg (V)", weight='bold')
+    axs[4].set_ylabel("Id (uA)", weight='bold')
+    axs[4].set_xlabel("Time (ms)", weight='bold')
+    axs[0].plot(xdata*1e+3, ydata1)
+    axs[1].plot(xdata*1e+3, ydata2, 'm')
+    axs[2].plot(xdata*1e+3, ydata3, 'g')
+    axs[3].plot(xdata*1e+3, ydata4, 'r')
+    axs[4].plot(xdata*1e+3, ydata5*1e+6, 'k')
     axs[0].ticklabel_format(style='plain')
     axs[1].ticklabel_format(style='plain')
     axs[2].ticklabel_format(style='plain')
