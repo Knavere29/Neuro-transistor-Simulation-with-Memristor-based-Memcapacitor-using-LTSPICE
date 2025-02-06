@@ -18,7 +18,7 @@ netlist.set_parameters(x0=0.1)
 
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(
-    ".tran 1m",
+    ".tran 0.2m",
 )
 
 # Sweeping Parameters
@@ -35,9 +35,9 @@ for voltage in [1]:                                                 # Switching 
                         run_count += 1
                         config_volt = "PULSE(" + "0 " + str(voltage) + " 0 100n 100n " + str(t_on) + "u " + str(t_period) + "u)"
                         run_file_list.append("Run_" + str(run_count) + "_Volt_" + str(voltage) + "V_Ton_" + str(t_on) + "u_T_" + str(t_period) + "u_State1_" + str(x1)+"_State2_"+str(x2)+"_State3_"+str(x3))
-                        netlist.set_component_value('Vpulse1', config_volt)
-                        netlist.set_component_value('Vpulse2', config_volt)
-                        netlist.set_component_value('Vpulse3', config_volt)
+                        netlist.set_component_value('Vpulse1', "PULSE(" + "0 " + str(voltage) + " 0 100n 100n " + str(t_on) + "u " + str(t_period) + "u 15)")
+                        netlist.set_component_value('Vpulse2', "PULSE(" + "0 " + str(voltage) + " 0 100n 100n " + str(t_on) + "u " + str(t_period) + "u 10)")
+                        netlist.set_component_value('Vpulse3', "PULSE(" + "0 " + str(voltage) + " 0 100n 100n " + str(t_on) + "u " + str(t_period) + "u 5)")
                         run_netlist_file = "Run_{}_Volt_{}V_Ton_{}u_T_{}u_State1_{}_State2_{}_State3_{}.net".format(run_count, voltage, t_on, t_period, x1, x2, x3)          # File Naming
                         print("Simulating: " + run_netlist_file)
                         LTC.run_now(netlist, run_filename=run_netlist_file+".asc")
@@ -71,11 +71,11 @@ for raw in run_file_list:
 
     # Plot
     px = 1 / plt.rcParams['figure.dpi']  # pixel in inches
-    fig, axs = plt.subplots(nrows=3, ncols=1, layout='constrained', figsize=(1080*px, 720*px))    # Create the canvas for plotting
+    fig, axs = plt.subplots(nrows=5, ncols=1, layout='constrained', figsize=(1080*px, 720*px))    # Create the canvas for plotting
 
     raw_file = RawRead(file_name)
     #print(raw_file.get_trace_names())                                                             # Get and print a list of all the traces
-    trace_names = ('V(Vpulse1)', 'V(Vpulse2)', 'V(Vpulse3)', 'V(Vg)', 'I(R1)')                     # Parameters to be plotted
+    trace_names = ('V(Vpulse1)', 'V(Vpulse2)', 'V(Vpulse3)', 'V(Vg)', 'I(Rd)')                     # Parameters to be plotted
 
     time = raw_file.get_trace('time')
     y = list()
@@ -94,17 +94,23 @@ for raw in run_file_list:
         ydata4 = y[3].get_wave(step)
         ydata5 = y[4].get_wave(step)
 
-    fig.suptitle(str(raw))
-    axs[0].set_ylabel("Vpulse (V)")
-    axs[1].set_ylabel("Vg (V)")
-    axs[2].set_ylabel("Id (uA)")
-    axs[2].set_xlabel("Time (s)")
-    axs[0].plot(xdata, ydata1)
-    axs[1].plot(xdata, ydata4, 'm')
-    axs[2].plot(xdata, ydata5*1e+6, 'g')
+    fig.suptitle(str(raw), weight='bold')
+    axs[0].set_ylabel("Vpulse1 (V)", weight='bold')
+    axs[1].set_ylabel("Vpulse2 (V)", weight='bold')
+    axs[2].set_ylabel("Vpulse3 (V)", weight='bold')
+    axs[3].set_ylabel("Vg (V)", weight='bold')
+    axs[4].set_ylabel("Id (uA)", weight='bold')
+    axs[4].set_xlabel("Time (ms)", weight='bold')
+    axs[0].plot(xdata*1e+3, ydata1, 'c')
+    axs[1].plot(xdata*1e+3, ydata2, 'k')
+    axs[2].plot(xdata*1e+3, ydata3, 'r')
+    axs[3].plot(xdata*1e+3, ydata4, 'm')
+    axs[4].plot(xdata*1e+3, ydata5*1e+6, 'g')
     axs[0].ticklabel_format(style='plain')
     axs[1].ticklabel_format(style='plain')
     axs[2].ticklabel_format(style='plain')
+    axs[3].ticklabel_format(style='plain')
+    axs[4].ticklabel_format(style='plain')
 
     pwd = os.getcwd() # present working directory
     file_name = os.path.join(pwd,"result_task10a",raw+".png")

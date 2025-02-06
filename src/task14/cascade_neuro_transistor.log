@@ -1,6 +1,6 @@
 LTspice 24.0.12 for Windows
 Circuit: * C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task14\cascade_neuro_transistor.asc
-Start Time: Tue Feb  4 18:42:02 2025
+Start Time: Wed Feb  5 14:09:43 2025
 solver = Normal
 Maximum thread count: 16
 tnom = 27

@@ -15,11 +15,10 @@ netlist = AscEditor("../base/neuro_memristor.asc")                              
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
-netlist.set_component_value('Vpulse', "PULSE(0 1 0 100n 100n 2u 4u)")
 
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(
-    ".tran 2m",
+    ".tran 1m",
 )
 
 run_count = 0
@@ -30,8 +29,8 @@ for voltage in [0.8, 1.0, 1.2]:                                # Switching Pseud
             for x in [0.1, 0.284]:                             # Switching the time period
                 netlist.set_parameters(x0=x)
                 run_count += 1
-                config_volt = "PULSE(" + "0 " + str(voltage) + " 0 100n 100n " + str(t_on) + "u " + str(t_period) + "u)"
-                netlist.set_component_value('Vpulse', config_volt)
+                config_volt = "PULSE(" + "0 " + str(voltage) + " 0 100n 100n " + str(t_on) + "u " + str(t_period) + "u 50)"
+                netlist.set_component_value('V', config_volt)
                 run_file_list.append("Run_"+str(run_count)+"_Volt_"+str(voltage)+"V_Ton_"+str(t_on)+"u_T_"+str(t_period)+"u_State_"+str(x))
                 run_netlist_file = "Run_{}_Volt_{}V_Ton_{}u_T_{}u_State_{}.net".format(run_count, voltage, t_on, t_period, x)          # File Naming
                 print("Simulating: " + run_netlist_file)
@@ -75,7 +74,7 @@ for raw in run_file_list:
     raw_file = RawRead(file_name)
 
     #print(raw_file.get_trace_names())                                 # Get and print a list of all the traces
-    trace_names = ('V(Vpulse)', 'V(Vg)', 'I(R1)')                     # Parameters to be plotted
+    trace_names = ('V(Vpulse)', 'V(Vg)', 'I(Rd)')                     # Parameters to be plotted
 
     time_data = raw_file.get_trace('time')
     y = list()
@@ -92,14 +91,14 @@ for raw in run_file_list:
         ydata2 = y[1].get_wave(step)
         ydata3 = y[2].get_wave(step)
 
-    fig.suptitle(str(raw))
-    axs[0].set_ylabel("Vpulse (V)")
-    axs[1].set_ylabel("Vg (V)")
-    axs[2].set_ylabel("IR1 (uA)")
-    axs[2].set_xlabel("Time (s)")
-    axs[0].plot(xdata, ydata1)
-    axs[1].plot(xdata, ydata2, 'm')
-    axs[2].plot(xdata, ydata3*1e+6, 'g')
+    fig.suptitle(str(raw), weight='bold')
+    axs[0].set_ylabel("Vpulse (V)", weight='bold')
+    axs[1].set_ylabel("Vg (V)", weight='bold')
+    axs[2].set_ylabel("IRd (uA)", weight='bold')
+    axs[2].set_xlabel("Time (ms)", weight='bold')
+    axs[0].plot(xdata*1e+3, ydata1)
+    axs[1].plot(xdata*1e+3, ydata2, 'm')
+    axs[2].plot(xdata*1e+3, ydata3*1e+6, 'g')
     axs[0].ticklabel_format(style='plain')
     axs[1].ticklabel_format(style='plain')
     axs[2].ticklabel_format(style='plain')
@@ -113,47 +112,46 @@ for raw in run_file_list:
     if (state_change == 1):
         id_data1 = ydata3
         t_data1 = xdata
+        vg_data1 = ydata2
         state_change = 2
-    # elif (state_change == 2):
-    #     id_data2 = ydata3
-    #     t_data2 = xdata
-    #     state_change = 3
     else:
-        id_data3 = ydata3
-        t_data3 = xdata
+        id_data2 = ydata3
+        t_data2 = xdata
+        vg_data2 = ydata2
         state_change = 1
         # merge all the time data
-        # t_data = np.unique(np.concatenate((t_data1,t_data2,t_data3),0))
-        t_data = np.unique(np.concatenate((t_data1,t_data3),0))
+        t_data = np.unique(np.concatenate((t_data1,t_data2),0))
         count = 0
         for t in t_data:
             if t not in t_data1:
                 id_data1 = np.insert(id_data1,count, id_data1[count-1], axis=0)
-            # if t not in t_data2:
-            #     id_data2 = np.insert(id_data2,count, id_data2[count-1], axis=0)
-            if t not in t_data3:
-                id_data3 = np.insert(id_data3,count, id_data3[count-1], axis=0)
+            if t not in t_data2:
+                id_data2 = np.insert(id_data2,count, id_data2[count-1], axis=0)
             count += 1
         # Plot
         px = 1 / plt.rcParams['figure.dpi']  # pixel in inches
-        fig, axs = plt.subplots(nrows=3, ncols=1, layout='constrained', figsize=(1080 * px, 720 * px))  # Create the canvas for plotting
+        fig, axs = plt.subplots(nrows=4, ncols=1, layout='constrained', figsize=(1080 * px, 720 * px))  # Create the canvas for plotting
         f_name = str(raw).split("_")
         f_name_len = len(f_name)
         f_name = "_".join(f_name[2:-2])
-        fig.suptitle(f_name)
-        axs[0].set_ylabel("Vpulse (V)")
-        axs[1].set_ylabel("Vg (V)")
-        axs[2].set_ylabel("IR1 (uA)")
-        axs[2].set_xlabel("Time (s)")
-        axs[0].plot(xdata, ydata1)
-        axs[1].plot(xdata, ydata2, 'm')
-        axs[2].plot(t_data, id_data1*1e+6, 'g', label="x=0.1")
-        # axs[2].plot(t_data, id_data2*10e+6, 'c', label="x=0.192")
-        axs[2].plot(t_data, id_data3*1e+6, 'r', label="x=0.284")
-        fig.legend(loc='outside right lower')
+        fig.suptitle(f_name, weight='bold')
+        axs[0].set_ylabel("Vpulse (V)", weight='bold')
+        axs[1].set_ylabel("Vg1 (V)", weight='bold')
+        axs[2].set_ylabel("Vg2 (V)", weight='bold')
+        axs[3].set_ylabel("IRd (uA)", weight='bold')
+        axs[3].set_xlabel("Time (ms)", weight='bold')
+        axs[0].plot(xdata*1e+3, ydata1)
+        axs[1].plot(t_data1*1e+3, vg_data1, 'm', label="x=0.1")
+        axs[2].plot(t_data2*1e+3, vg_data2, 'k', label="x=0.284")
+        axs[3].plot(t_data*1e+3, id_data1*1e+6, 'g', label="x=0.1")
+        axs[3].plot(t_data*1e+3, id_data2*1e+6, 'r', label="x=0.284")
+        axs[1].legend(loc='upper right')
+        axs[2].legend(loc='upper right')
+        axs[3].legend(loc='upper right')
         axs[0].ticklabel_format(style='plain')
         axs[1].ticklabel_format(style='plain')
         axs[2].ticklabel_format(style='plain')
+        axs[3].ticklabel_format(style='plain')
 
         pwd = os.getcwd()  # present working directory
         file_name = os.path.join(pwd, "comparison", f_name + ".png")

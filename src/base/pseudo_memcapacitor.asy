@@ -3,8 +3,8 @@ SymbolType BLOCK
 RECTANGLE Normal -48 -40 48 40
 WINDOW 0 0 -40 Bottom 2
 WINDOW 3 0 40 Top 2
-SYMATTR Value pseudo_memcapacitor
 SYMATTR Prefix X
+SYMATTR Value pseudo_memcapacitor
 SYMATTR ModelFile .\pseudo_memcapacitor.cir
 PIN -48 0 LEFT 8
 PINATTR PinName TE
