@@ -7,7 +7,7 @@ R. Schroedter et al., "SPICE Compact Model for an Analog Switching Niobium Oxide
 ## Task overview 
 ### Semester project for Neural Networks and Memristive Hardware Accelerators course @ Technische Universität Dresden
 Implement a single memristor-based memcapacitor at the gate of a MOSFET transistor in LTSPICE and find a pulse input setting which realizes the neuron firing after integration through the transistor. 
-Extend the simulation to a 3x3 multi-channel neuro-transistor as shown in Figure 1 and test the correct functionality. 
+Extend the simulation to a 3x3 multi-channel neuro-transistor and test the correct functionality. 
 Finally, sweep and find optional parameters for capacitances and pulse timing by using the LTSPICE in a loop via python
 
 ## Files & Folder Structure
