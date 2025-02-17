@@ -11,6 +11,7 @@ Extend the simulation to a 3x3 multi-channel neuro-transistor as shown in Figure
 Finally, sweep and find optional parameters for capacitances and pulse timing by using the LTSPICE in a loop via python
 
 ## Files & Folder Structure
+<pre>
 |--> doc                                       
 |    |--> groupK_project3.pptx                 
 |--> ref                                       
@@ -46,8 +47,10 @@ Finally, sweep and find optional parameters for capacitances and pulse timing by
 |    |--> task14
 |    |    |--> task14.asc              
 |    |--> requirements.txt             
-
+</pre>
+  
 ## Files and folders details
+<pre>
 |--> doc                      : documents                                  
 |--> ref                      : reference materials                 
 |--> src                      : source code               
@@ -66,15 +69,19 @@ Finally, sweep and find optional parameters for capacitances and pulse timing by
 |    |    |--> result_task12a : contains plot of 3x3 pseudo-memcapacitor output for different memristor state (Column-wise)
 |    |    |--> result_task12b : contains plot of 3x3 pseudo-memcapacitor output for different memristor state (Row-wise)
 |    |--> task14             
-
+</pre>
+  
 ### LTSpice files details
+<pre>
 1. neuro_memristor.asc      : LTSPICE single pseudo-memcapacitor circuit
 2. neuro_memristor_3x1.asc  : LTSPICE 3x1 pseudo-memcapacitor circuit
 3. neuro_memristor_3x3.asc  : LTSPICE 3x3 pseudo-memcapacitor circuit
 4. mem_drm.asc              : LTSPICE memristor circuit to plot DRM
 5. task14.asc               : LTSPICE circuit realising cascading of pseudo-memcapacitor blocks using transimpedence amplifier
-
+</pre>
+  
 ### Python files details
+<pre>
 1. task3.py      : To run memristor simulation via python and plot state and conductance graph 
 2. task4a.py     : To plot potentiation and depression curve of memristor
 3. task9.py      : To find the input setting of single pseudo-memcapacitor with different parameters sweeped via python
@@ -82,8 +89,11 @@ Finally, sweep and find optional parameters for capacitances and pulse timing by
 5. task10b.py    : To find the input setting of 3X1 pseudo-memcapacitor with different parameters for ttfs input; sweeped via python
 6. task12a.py    : To find the input setting of 3X3 pseudo-memcapacitor with different parameters (Column-wise) sweeped via python
 7. task12b.py    : To find the input setting of 3X3 pseudo-memcapacitor with different parameters (Row-wise) sweeped via python
-
+</pre>
+  
 ### Other file details
+<pre>
 1. groupK_project3.pptx               : final presentation ppt
 2. Project3_Neurotransistor_SPICE.pdf : describes details of task of this projects
 3. requirements.txt                   : lists the required python modules to run python file
+</pre>
