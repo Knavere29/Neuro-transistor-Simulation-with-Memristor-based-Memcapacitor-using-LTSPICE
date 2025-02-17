@@ -7,12 +7,13 @@ from PyLTSpice import SimRunner, SpiceCircuit, SpiceEditor, AscEditor
 from PyLTSpice import LTspice
 from ttfs_encoding import *
 
+# Objective : To find the input setting of 3X1 pseudo-memcapacitor with different parameters for ttfs input; sweeped via python
 task_name = "task10b"
 run_file_list = []
 
 # generate pwl file for ttfs encoding of image
-image_path = "./img_src/A/A1.png"  # Replace with your image
-T_max = 30e-6  # Maximum spike delay (1ms)
+image_path = "./img_src/A/A1.png"                   # Replace with your image
+T_max = 30e-6                                       # Maximum spike delay (1ms)
 
 pixel_data = read_image(image_path)
 print("Pixel Matrix (Grayscale):\n", pixel_data)

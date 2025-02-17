@@ -6,12 +6,13 @@ from PyLTSpice import Trace, RawWrite, RawRead
 from PyLTSpice import SimRunner, SpiceCircuit, SpiceEditor, AscEditor
 from PyLTSpice import LTspice
 
-task_name = "task12"
+# Objective : To find the input setting of 3X3 pseudo-memcapacitor with different parameters (Row-wise) sweeped via python
+task_name = "task12b"
 run_file_list = []
 
 # Select spice model
 LTC = SimRunner(output_folder='./temp', simulator=LTspice)                         # Location for saving the simualtion files
-netlist = AscEditor("../base/neuro_memristor_3x3.asc")                                     # Creating Netlist from .asc file
+netlist = AscEditor("../base/neuro_memristor_3x3.asc")                             # Creating Netlist from .asc file
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
@@ -19,8 +20,7 @@ netlist.set_parameters(x0=0.1)
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(
     "; Simulation Settings",
-    ".tran 0.5"
-    "m",
+    ".tran 0.5m",
 )
 
 # Sweeping Parameters
@@ -79,11 +79,11 @@ for raw in run_file_list:
 
     # Plot
     px = 1 / plt.rcParams['figure.dpi']  # pixel in inches
-    fig, axs = plt.subplots(nrows=5, ncols=1, layout='constrained', figsize=(1080*px, 720*px))    # Create the canvas for plotting
+    fig, axs = plt.subplots(nrows=5, ncols=1, layout='constrained', figsize=(1080*px, 720*px))       # Create the canvas for plotting
 
     raw_file = RawRead(file_name)
-    #print(raw_file.get_trace_names())                                 # Get and print a list of all the traces
-    trace_names = ('V(Vpulse1)', 'V(Vpulse2)', 'V(Vpulse3)', 'V(Vg1)', 'V(Vg2)', 'V(Vg3)', 'I(R1)')                     # Parameters to be plotted
+    #print(raw_file.get_trace_names())                                                               # Get and print a list of all the traces
+    trace_names = ('V(Vpulse1)', 'V(Vpulse2)', 'V(Vpulse3)', 'V(Vg1)', 'V(Vg2)', 'V(Vg3)', 'I(R1)')  # Parameters to be plotted
 
     time = raw_file.get_trace('time')
     y = list()

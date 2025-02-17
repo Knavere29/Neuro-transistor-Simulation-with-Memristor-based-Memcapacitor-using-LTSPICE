@@ -6,12 +6,13 @@ from PyLTSpice import Trace, RawWrite, RawRead
 from PyLTSpice import SimRunner, SpiceCircuit, SpiceEditor, AscEditor
 from PyLTSpice import LTspice
 
+# Objective : To find the input setting of single pseudo-memcapacitor with different parameters sweeped via python
 task_name = "task9"
 run_file_list = []
 
 # Select spice model
 LTC = SimRunner(output_folder='./temp', simulator=LTspice)                         # Location for saving the simualtion files
-netlist = AscEditor("../base/neuro_memristor.asc")                                     # Creating Netlist from .asc file
+netlist = AscEditor("../base/neuro_memristor.asc")                                 # Creating Netlist from .asc file
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
@@ -24,7 +25,7 @@ netlist.add_instructions(
 run_count = 0
 # Sweeping Parameters
 for voltage in [0.8, 1.0, 1.2]:                                # Switching Pseudo-Memcapacitor ON/OFF
-    for t_on in [1, 2, 3]:                                    # Switching the voltage source between 0.8V, 1.2V and 1.5V
+    for t_on in [1, 2, 3]:                                     # Switching the voltage source between 0.8V, 1.2V and 1.5V
         for t_period in [10, 50, 100]:                         # Switching the t_on period
             for x in [0.1, 0.284]:                             # Switching the time period
                 netlist.set_parameters(x0=x)
@@ -73,7 +74,7 @@ for raw in run_file_list:
     fig, axs = plt.subplots(nrows=3, ncols=1, layout='constrained', figsize=(1080*px, 720*px))    # Create the canvas for plotting
     raw_file = RawRead(file_name)
 
-    #print(raw_file.get_trace_names())                                 # Get and print a list of all the traces
+    #print(raw_file.get_trace_names())                                # Get and print a list of all the traces
     trace_names = ('V(Vpulse)', 'V(Vg)', 'I(Rd)')                     # Parameters to be plotted
 
     time_data = raw_file.get_trace('time')
@@ -119,6 +120,7 @@ for raw in run_file_list:
         t_data2 = xdata
         vg_data2 = ydata2
         state_change = 1
+
         # merge all the time data
         t_data = np.unique(np.concatenate((t_data1,t_data2),0))
         count = 0
@@ -128,6 +130,7 @@ for raw in run_file_list:
             if t not in t_data2:
                 id_data2 = np.insert(id_data2,count, id_data2[count-1], axis=0)
             count += 1
+
         # Plot
         px = 1 / plt.rcParams['figure.dpi']  # pixel in inches
         fig, axs = plt.subplots(nrows=4, ncols=1, layout='constrained', figsize=(1080 * px, 720 * px))  # Create the canvas for plotting

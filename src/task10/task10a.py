@@ -6,12 +6,13 @@ from PyLTSpice import Trace, RawWrite, RawRead
 from PyLTSpice import SimRunner, SpiceCircuit, SpiceEditor, AscEditor
 from PyLTSpice import LTspice
 
+# Objective : To find the input setting of 3X1 pseudo-memcapacitor with different parameters sweeped via python
 task_name = "task10a"
 run_file_list = []
 
 # Select spice model
 LTC = SimRunner(output_folder='./temp', simulator=LTspice)                         # Location for saving the simualtion files
-netlist = AscEditor("../base/neuro_memristor_3x1.asc")                                     # Creating Netlist from .asc file
+netlist = AscEditor("../base/neuro_memristor_3x1.asc")                             # Creating Netlist from .asc file
 
 # Set default parameters
 netlist.set_parameters(x0=0.1)
@@ -23,12 +24,12 @@ netlist.add_instructions(
 
 # Sweeping Parameters
 run_count = 0
-for voltage in [1]:                                                 # Switching Pseudo-Memcapacitor ON/OFF
+for voltage in [1]:                                                   # Switching Pseudo-Memcapacitor ON/OFF
     for t_on in [2]:                                                  # Switching the voltage source between 0.8V, 1.2V and 1.5V
         for t_period in [10]:                                         # Switching the t_on period
-            for x1 in [0.1, 0.284]:                            # Switching the time period
-                for x2 in [0.1, 0.284]:                        # Switching the time period
-                    for x3 in [0.1, 0.284]:                    # Switching the time period
+            for x1 in [0.1, 0.284]:                                   # Switching the time period
+                for x2 in [0.1, 0.284]:                               # Switching the time period
+                    for x3 in [0.1, 0.284]:                           # Switching the time period
                         netlist.set_parameters(x1=x1)
                         netlist.set_parameters(x2=x2)
                         netlist.set_parameters(x3=x3)
@@ -71,7 +72,7 @@ for raw in run_file_list:
 
     # Plot
     px = 1 / plt.rcParams['figure.dpi']  # pixel in inches
-    fig, axs = plt.subplots(nrows=5, ncols=1, layout='constrained', figsize=(1080*px, 720*px))    # Create the canvas for plotting
+    fig, axs = plt.subplots(nrows=5, ncols=1, layout='constrained', figsize=(1080*px, 720*px))     # Create the canvas for plotting
 
     raw_file = RawRead(file_name)
     #print(raw_file.get_trace_names())                                                             # Get and print a list of all the traces

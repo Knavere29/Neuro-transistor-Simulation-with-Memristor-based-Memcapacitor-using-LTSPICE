@@ -1,0 +1,55 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\NAGARAJ V REDDY\Documents\NES\1SEM\NNMHA\Neuro-transistor-Simulation-with-Memristor-based-Memcapacitor-using-LTSPICE\src\task14\task14.asc
+Start Time: Mon Feb 17 19:30:04 2025
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = modified trap
+WARNING: Node STATE11 is floating and connected to current source G:U9:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE21 is floating and connected to current source G:U3:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE31 is floating and connected to current source G:U1:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE12 is floating and connected to current source G:U2:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE22 is floating and connected to current source G:U4:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE32 is floating and connected to current source G:U5:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE13 is floating and connected to current source G:U6:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE33 is floating and connected to current source G:U8:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node STATE23 is floating and connected to current source G:U7:X.  It's .op solution is defined solely by a .ic statement.
+WARNING: Node S is floating and connected to current source G:U20:X.  It's .op solution is defined solely by a .ic statement.
+
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+Gmin = 1.07374
+Gmin = 0.115292
+Gmin = 0.0123794
+Gmin = 0.00132923
+Gmin = 0.000142725
+Gmin = 1.5325e-05
+Gmin = 1.6455e-06
+Gmin = 1.76685e-07
+vernier = 0.5
+vernier = 0.25
+vernier = 0.125
+Gmin = 8.77213e-08
+vernier = 0.166667
+Gmin = 6.07123e-08
+vernier = 0.222222
+vernier = 0.296296
+Gmin = 3.29802e-08
+vernier = 0.395061
+vernier = 0.526748
+Gmin = 1.26853e-08
+vernier = 0.702331
+Gmin = 2.93007e-09
+vernier = 0.936441
+vernier = 1
+Gmin = 3.39714e-10
+Gmin = 3.64766e-11
+Gmin = 3.91664e-12
+Gmin = 4.20546e-13
+Gmin = 0
+Gmin stepping succeeded in finding the operating point.
+
+Total elapsed time: 1.967 seconds.
+

@@ -20,7 +20,7 @@ def generate_pwl_files(spike_times, output_prefix="spikes"):
     pixel_map = {
         "V1": [(0, 0), (0, 1), (0, 2)],  # P1, P2, P3
         "V2": [(1, 0), (1, 1), (1, 2)],  # P4, P5, P6
-        "V3": [(2, 0), (2, 1), (2, 2)]  # P7, P8, P9
+        "V3": [(2, 0), (2, 1), (2, 2)]   # P7, P8, P9
     }
     for voltage_source, pixel_list in pixel_map.items():
         filename = f"{output_prefix}_{voltage_source}.txt"
@@ -29,7 +29,7 @@ def generate_pwl_files(spike_times, output_prefix="spikes"):
             for (row, col) in pixel_list:
                 time = spike_times[row, col]
 
-                f.write(f"{time + d :1.6e} 0.0\n")  # Voltage spike
+                f.write(f"{time + d :1.6e} 0.0\n")        # Voltage spike
                 f.write(f"{time + 0.1e-6 + d :.6e} 1\n")  # Drop voltage
                 f.write(f"{time + 1.9e-6 + d :.6e} 1\n")  # Drop voltage
                 f.write(f"{time + 2e-6 + d:.6e} 0.0\n\n") # Restore voltage

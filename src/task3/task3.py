@@ -6,6 +6,7 @@ from PyLTSpice import Trace, RawWrite, RawRead
 from PyLTSpice import SimRunner, SpiceCircuit, SpiceEditor, AscEditor
 from PyLTSpice import LTspice
 
+# Objective : To run memristor simulation via python and plot state and conductance graph
 task_name = "task3"
 
 # Select spice model
@@ -18,7 +19,6 @@ netlist.set_component_value('Vin', "PWL file=../task3_input.txt")
 
 # Simulation time period to run for 200 seconds
 netlist.add_instructions(
-    "; Simulation Settings",
     ".tran 200",
 )
 LTC.run(netlist,run_filename=task_name+".asc")
